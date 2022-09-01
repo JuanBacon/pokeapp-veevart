@@ -1,26 +1,23 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
-import pokemons from '../../source/poke-json.json'
 import Card from '../Card/Card'
 
-const Home = () => {
-
-    const [pokedata, setPokedata] = useState([])
-
-    useEffect(() =>{
-        setPokedata(pokemons)
-    }, [])
+const Home = (props) => {
+    const pokemons = props.pokelist;
 
     return (
         <div className='container my-3'>
-            <h1>Home</h1>
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item active" aria-current="page">Home</li>
+                </ol>
+            </nav>
             <div className='row'>
                 {
-                pokedata.map((pokemon, index) => {
-                    return <div key={index} className='col-md-4 col-xs-12'>
-                        <Card pokemon={pokemon}></Card>
-                    </div>
-                })
+                    pokemons.map((pokemon, index) => {
+                        return <div key={index} className='col-md-4 col-xs-12'>
+                            <Card pokemon={pokemon}></Card>
+                        </div>
+                    })
                 }
             </div>
         </div>
